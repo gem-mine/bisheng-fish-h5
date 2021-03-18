@@ -42,7 +42,13 @@ export default postcssOptions => ([
     }, {
       loader: 'postcss-loader',
       options: postcssOptions,
-    }, 'less-loader'],
+    }, {
+      loader: 'less-loader', // 生产环境中注释失效导致postcss-rtl处理后的文件有问题: https://github.com/neilgao000/blog/issues/15
+      options: {
+        outputStyle: 'expanded',
+        compress: false
+      }
+    }]
   },
   {
     test: /\.module\.less$/,
@@ -56,7 +62,13 @@ export default postcssOptions => ([
     }, {
       loader: 'postcss-loader',
       options: postcssOptions,
-    }, 'less-loader'],
+    }, {
+      loader: 'less-loader', // 生产环境中注释失效导致postcss-rtl处理后的文件有问题: https://github.com/neilgao000/blog/issues/15
+      options: {
+        outputStyle: 'expanded',
+        compress: false
+      }
+    }]
   },
   {
     test(filePath) {
